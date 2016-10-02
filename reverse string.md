@@ -32,3 +32,37 @@ function leftRotateString(s, n, m) {
 ```
 
 Hereby we can satify the requirement to move the first few characters to the end. Then we can analysis the time complexity and room complextity of the algorithm. For the string of n,  assume that to move m characters to the end, and m*n times operations should be finished. Meanwhile we need a variable to save the first character. Hence, the time complexity if O(mn), and the room complexity is O(1). Is there better way to reduce the time complexity?
+
+
+
+### method 2
+
+Address this problem, we may think this problem in another side. Hence the problem requires that to move the fornt part characters to the end, we can handle the string requires movement and these don't respectively. For example,we can cut the string into two parts, then reverse the two parts respectively, finally reverse the whole string, and the problem will be solves.
+
+Take the example of string 'abcdef', if we need to move 'def' to the front of 'abc', we only need three steps.
+
+1. Cut the original string into two parts, X means 'abc', and Y means 'def'.
+2. Reverse the characters of X which means reverse 'abc' to get 'cba'; then reverse the characters of Y, which will obtain 'fed' from 'def'.
+3. Finally, reverse the result above, that is to reverse the whole string "cbafed" to obtain 'defabc'. Hereby, the reverse string is implemented.
+
+```javascript
+function reverseString(s, from, to) {
+	s = s.split('');
+	while (from < to) {
+		var t = s[from];
+		s[from++] = s[to];
+		s[to--] = t;
+	}
+	return s.join('');
+}
+
+function leftRotateString(s, n, m) {
+	m %= n;
+	s = reverseString(s, 0, m-1);
+	s = reverseString(s, m, n-1);
+	s = reverseString(s, 0, n-1);
+	return s;
+}
+```
+
+Hereby, the time complexity is O(n), and the room complexity is O(1).
