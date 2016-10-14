@@ -2,7 +2,7 @@
 
 ### description
 
-Input a string consists of number, please convert this to an int and output. For example, input the string '123' and output 123.
+Input a string consists of numbers, please convert this to an int and output. For example, input the string '123' and output 123.
 
 Actually, this will be easily implemented by javascript. As it has the feature to convert string to number. Hence, we will dicuss the solution by java.
 
