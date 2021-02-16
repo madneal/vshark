@@ -10,4 +10,8 @@ type Request struct {
 }
 
 type Headers struct {
+	Host        *string
+	Origin      *string
+	UserAgent   *string
+	ContentType *string
 }
