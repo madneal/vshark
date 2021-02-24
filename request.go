@@ -6,24 +6,25 @@ import (
 )
 
 type Request struct {
-	Host    *string
-	Path    *string
+	Host    string
+	Path    string
 	Port    int
-	Url     *string
-	Method  *string
+	Url     string
+	Method  string
 	Headers *map[string]string
+	Body    string
 }
 
 type Response struct {
 	StatusCode int
-	Body       *string
+	Body       string
 }
 
 type Headers struct {
-	Host        *string
-	Origin      *string
-	UserAgent   *string
-	ContentType *string
+	Host        string
+	Origin      string
+	UserAgent   string
+	ContentType string
 }
 
 func (request *Request) doRequest() (res *resty.Response) {
@@ -34,10 +35,10 @@ func (request *Request) doRequest() (res *resty.Response) {
 	}
 	var err error
 	var response *resty.Response
-	if *request.Method == "GET" {
-		response, err = r.Get(*request.Url)
-	} else if *request.Method == "POST" {
-
+	if request.Method == "GET" {
+		response, err = r.Get(request.Url)
+	} else if request.Method == "POST" {
+		response, err = r.SetBody(request.Body).Post(request.Url)
 	}
 	if err != nil {
 		fmt.Println(err)
