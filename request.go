@@ -11,7 +11,7 @@ type Request struct {
 	Port    int
 	Url     string
 	Method  string
-	Headers *map[string]string
+	Headers map[string]string
 	Body    string
 }
 
@@ -31,7 +31,7 @@ func (request *Request) doRequest() (res *resty.Response) {
 	client := resty.New()
 	r := client.R()
 	if request.Headers != nil {
-		r.SetHeaders(*request.Headers)
+		r.SetHeaders(request.Headers)
 	}
 	var err error
 	var response *resty.Response
