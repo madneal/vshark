@@ -6,11 +6,9 @@ import (
 )
 
 func TestDoRequest(t *testing.T) {
-	url := "https://www.baidu.com"
-	method := "GET"
 	request := Request{
-		Url:    &url,
-		Method: &method,
+		Url:    "https://www.baidu.com",
+		Method: "GET",
 	}
 	res := request.doRequest()
 	assert.Equal(t, 200, res.StatusCode(), "the status code should be 200")
