@@ -15,18 +15,6 @@ type Request struct {
 	Body    string
 }
 
-type Response struct {
-	StatusCode int
-	Body       string
-}
-
-type Headers struct {
-	Host        string
-	Origin      string
-	UserAgent   string
-	ContentType string
-}
-
 func (request *Request) doRequest() (res *resty.Response) {
 	client := resty.New()
 	r := client.R()
@@ -44,4 +32,9 @@ func (request *Request) doRequest() (res *resty.Response) {
 		fmt.Println(err)
 	}
 	return response
+}
+
+func Parser(jsonStr *string) *Request {
+	request := new(Request)
+	return request
 }
